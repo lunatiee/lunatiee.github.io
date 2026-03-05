@@ -75,6 +75,52 @@
       opacity: 0;
       transform: translateY(18px);
       animation: fadeUp 0.7s cubic-bezier(0.22, 1, 0.36, 1) 0.05s forwards;
+      position: relative;
+    }
+
+    /* ── Lang toggle ────────────────────────────────── */
+    .lang-toggle {
+      position: absolute;
+      top: 0;
+      right: 0;
+      display: flex;
+      align-items: center;
+      gap: 0;
+      font-family: var(--font-mono);
+      font-size: 0.7rem;
+      letter-spacing: 0.1em;
+      border: 1px solid var(--border);
+      border-radius: 2px;
+      overflow: hidden;
+    }
+
+    .lang-toggle button {
+      background: none;
+      border: none;
+      cursor: pointer;
+      padding: 0.3em 0.7em;
+      color: var(--muted);
+      font-family: var(--font-mono);
+      font-size: 0.7rem;
+      letter-spacing: 0.1em;
+      transition: color 0.18s, background 0.18s;
+      line-height: 1;
+    }
+
+    .lang-toggle button.active {
+      color: var(--accent);
+      background: rgba(240, 165, 0, 0.08);
+    }
+
+    .lang-toggle button:hover:not(.active) {
+      color: var(--subtle);
+    }
+
+    .lang-toggle .lang-sep {
+      color: var(--border);
+      font-size: 0.65rem;
+      user-select: none;
+      pointer-events: none;
     }
 
     .badge {
@@ -395,11 +441,17 @@
 
     <!-- ── Header ───────────────────────────────────── -->
     <header>
-      <div class="badge">Available for opportunities</div>
+      <!-- Lang toggle -->
+      <div class="lang-toggle" role="group" aria-label="Language selector">
+        <button id="btn-ko" class="active" onclick="setLang('ko')">KO</button>
+        <span class="lang-sep">/</span>
+        <button id="btn-en" onclick="setLang('en')">EN</button>
+      </div>
+
+      <div class="badge" data-ko="기회를 찾고 있습니다" data-en="Available for opportunities">기회를 찾고 있습니다</div>
       <h1 class="name"><strong>Junyoung</strong> Choi</h1>
-      <p class="tagline">
-        Product Engineer building tools that make complex systems feel simple.
-        Interested in the intersection of <em>developer experience</em> and <em>AI automation</em>.
+      <p class="tagline" data-ko="HCI와 UX 디자인을 기반으로 한 Product Engineer. LLM을 활용해 복잡한 워크플로우를 단순하게 만드는 도구를 만듭니다." data-en="Product Engineer with a background in HCI and UX design. Building tools that leverage LLMs — making complex workflows feel simple.">
+        HCI와 UX 디자인을 기반으로 한 Product Engineer. LLM을 활용해 복잡한 워크플로우를 단순하게 만드는 도구를 만듭니다.
       </p>
       <div class="contact-row">
         <a href="https://github.com/lunatiee" target="_blank" rel="noopener">
@@ -420,22 +472,20 @@
 
     <!-- ── About ─────────────────────────────────────── -->
     <section class="about" data-delay="0">
-      <p class="section-label">// about</p>
+      <p class="section-label" data-ko="// 소개" data-en="// about">// 소개</p>
       <p class="about-text">
-        I design and build products end-to-end — from system architecture to the pixel-level polish.
-        Currently focused on workflow automation and AI tooling, exploring how language models
-        can act as reliable agents inside production systems.
+        <span data-ko="시스템 아키텍처부터 UI 디테일까지, 제품을 처음부터 끝까지 직접 만듭니다. HCI를 전공해서 항상 사용자 관점에서 먼저 생각합니다. 현재는 워크플로우 자동화와 AI 툴링에 집중하며, LLM을 프로덕션 시스템 안에서 신뢰할 수 있는 에이전트로 활용하는 방법을 탐구하고 있습니다." data-en="I design and build products end-to-end — from system architecture to the pixel-level polish. Studied HCI, so I approach every product from the user's perspective first. Currently focused on workflow automation and AI tooling, leveraging LLMs to act as reliable agents inside production systems.">시스템 아키텍처부터 UI 디테일까지, 제품을 처음부터 끝까지 직접 만듭니다. HCI를 전공해서 항상 사용자 관점에서 먼저 생각합니다. 현재는 워크플로우 자동화와 AI 툴링에 집중하며, LLM을 프로덕션 시스템 안에서 신뢰할 수 있는 에이전트로 활용하는 방법을 탐구하고 있습니다.</span>
         <br /><br />
-        <em>I care about the experience of using software as much as what the software does.</em>
+        <em><span data-ko="소프트웨어가 무엇을 하는지만큼, 어떻게 느껴지는지를 중요하게 생각합니다." data-en="I care about the experience of using software as much as what the software does.">소프트웨어가 무엇을 하는지만큼, 어떻게 느껴지는지를 중요하게 생각합니다.</span></em>
       </p>
     </section>
 
     <!-- ── Skills ────────────────────────────────────── -->
     <section class="skills" data-delay="1">
-      <p class="section-label">// stack</p>
+      <p class="section-label" data-ko="// LLM 덕분에 쓸 수 있게 된 것들" data-en="// things i'm poking at (with LLMs)">// LLM 덕분에 쓸 수 있게 된 것들</p>
       <div class="skills-grid">
         <div class="skill-group">
-          <h4>Frontend</h4>
+          <h4 data-ko="프론트엔드" data-en="Frontend">프론트엔드</h4>
           <ul>
             <li>Next.js / React</li>
             <li>TypeScript</li>
@@ -444,7 +494,7 @@
           </ul>
         </div>
         <div class="skill-group">
-          <h4>Backend</h4>
+          <h4 data-ko="백엔드" data-en="Backend">백엔드</h4>
           <ul>
             <li>Node.js</li>
             <li>PostgreSQL</li>
@@ -453,7 +503,7 @@
           </ul>
         </div>
         <div class="skill-group">
-          <h4>AI / Infra</h4>
+          <h4 data-ko="AI / 인프라" data-en="AI / Infra">AI / 인프라</h4>
           <ul>
             <li>OpenAI API</li>
             <li>Anthropic Claude</li>
@@ -462,7 +512,7 @@
           </ul>
         </div>
         <div class="skill-group">
-          <h4>Platform</h4>
+          <h4 data-ko="플랫폼" data-en="Platform">플랫폼</h4>
           <ul>
             <li>Docker</li>
             <li>Cloud Run</li>
@@ -475,7 +525,7 @@
 
     <!-- ── Projects ──────────────────────────────────── -->
     <section class="projects" data-delay="2">
-      <p class="section-label">// projects</p>
+      <p class="section-label" data-ko="// 프로젝트" data-en="// projects">// 프로젝트</p>
       <div class="projects-list">
 
         <div class="project-card">
@@ -483,11 +533,7 @@
             <span class="project-name">Workflow Builder</span>
             <span class="project-url">workflow-builder.lunatiee.is-a.dev</span>
           </div>
-          <p class="project-desc">
-            AI-powered workflow automation platform. Drag-and-drop visual editor with 51 built-in node types,
-            autonomous AI agent execution with agentic loop, human-in-the-loop approval flows,
-            and real-time collaborative editing via CRDT.
-          </p>
+          <p class="project-desc" data-ko="AI 기반 워크플로우 자동화 플랫폼. 51가지 빌트인 노드 타입을 갖춘 드래그앤드롭 비주얼 에디터, 에이전틱 루프 방식의 자율 AI 에이전트 실행, 사람이 개입하는 승인 플로우, CRDT 기반 실시간 공동 편집을 지원합니다." data-en="AI-powered workflow automation platform. Drag-and-drop visual editor with 51 built-in node types, autonomous AI agent execution with agentic loop, human-in-the-loop approval flows, and real-time collaborative editing via CRDT.">AI 기반 워크플로우 자동화 플랫폼. 51가지 빌트인 노드 타입을 갖춘 드래그앤드롭 비주얼 에디터, 에이전틱 루프 방식의 자율 AI 에이전트 실행, 사람이 개입하는 승인 플로우, CRDT 기반 실시간 공동 편집을 지원합니다.</p>
           <div class="project-tags">
             <span class="tag">Next.js</span>
             <span class="tag">React Flow</span>
@@ -507,7 +553,7 @@
     <!-- ── Footer ────────────────────────────────────── -->
     <footer>
       <span class="footer-left">© 2026 Junyoung Choi</span>
-      <span class="footer-right">lunatiee.github.io</span>
+      <span class="footer-right" data-ko="Seoul, Korea" data-en="Seoul, Korea">Seoul, Korea</span>
     </footer>
 
   </div>
@@ -551,6 +597,28 @@
     }, { threshold: 0.1 });
 
     sections.forEach((s) => observer.observe(s));
+
+    // ── Language toggle ──────────────────────────────
+    let currentLang = 'ko';
+
+    function setLang(lang) {
+      currentLang = lang;
+
+      // Update html lang attribute
+      document.documentElement.lang = lang;
+
+      // Update button active state
+      document.getElementById('btn-ko').classList.toggle('active', lang === 'ko');
+      document.getElementById('btn-en').classList.toggle('active', lang === 'en');
+
+      // Swap all translatable text
+      document.querySelectorAll('[data-ko][data-en]').forEach((el) => {
+        el.textContent = el.dataset[lang];
+      });
+    }
+
+    // Initialize to Korean on load
+    setLang('ko');
   </script>
 
 </body>
