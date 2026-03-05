@@ -450,8 +450,8 @@
 
       <div class="badge" data-ko="기회를 찾고 있습니다" data-en="Available for opportunities">기회를 찾고 있습니다</div>
       <h1 class="name"><strong>Junyoung</strong> Choi</h1>
-      <p class="tagline" data-ko="HCI기반 Product Engineer. LLM과 함께 의미있는 도구를 만듭니다." data-en="Product Engineer with a background in HCI and UX design. Building tools that leverage LLMs — making complex workflows feel simple.">
-        HCI기반 Product Engineer. LLM과 함께 의미있는 도구를 만듭니다.
+      <p class="tagline" data-ko="HCI 기반 Product Engineer.<br>LLM과 함께 의미있는 도구를 만듭니다." data-en="Product Engineer with a background in HCI.<br>Building tools that leverage LLMs — making complex workflows feel simple.">
+        HCI 기반 Product Engineer.<br>LLM과 함께 의미있는 도구를 만듭니다.
       </p>
       <div class="contact-row">
         <a href="https://github.com/lunatiee" target="_blank" rel="noopener">
@@ -613,7 +613,7 @@
 
       // Swap all translatable text
       document.querySelectorAll('[data-ko][data-en]').forEach((el) => {
-        el.textContent = el.dataset[lang];
+        el.innerHTML = el.dataset[lang];
       });
     }
 
