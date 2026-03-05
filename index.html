@@ -1,0 +1,557 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Junyoung Choi — Product Engineer</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;1,9..40,300&family=DM+Mono:wght@300;400&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    :root {
+      --bg:        #0a0a0a;
+      --surface:   #111111;
+      --border:    #1e1e1e;
+      --muted:     #444444;
+      --subtle:    #888888;
+      --text:      #e8e8e3;
+      --accent:    #f0a500;
+      --accent-dim:#7a5200;
+
+      --font-sans: 'DM Sans', sans-serif;
+      --font-mono: 'DM Mono', monospace;
+
+      --gap-sm:  0.75rem;
+      --gap-md:  1.5rem;
+      --gap-lg:  3rem;
+      --gap-xl:  5rem;
+
+      --max-w: 720px;
+    }
+
+    html {
+      background: var(--bg);
+      color: var(--text);
+      font-family: var(--font-sans);
+      font-size: 16px;
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+      scroll-behavior: smooth;
+    }
+
+    body {
+      min-height: 100vh;
+      padding: var(--gap-xl) var(--gap-lg);
+    }
+
+    /* ── Layout ─────────────────────────────────────── */
+    .container {
+      max-width: var(--max-w);
+      margin: 0 auto;
+    }
+
+    /* ── Noise overlay ──────────────────────────────── */
+    body::before {
+      content: '';
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      z-index: 999;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.04'/%3E%3C/svg%3E");
+      opacity: 0.35;
+    }
+
+    /* ── Header / Hero ──────────────────────────────── */
+    header {
+      padding-bottom: var(--gap-xl);
+      border-bottom: 1px solid var(--border);
+      margin-bottom: var(--gap-xl);
+      opacity: 0;
+      transform: translateY(18px);
+      animation: fadeUp 0.7s cubic-bezier(0.22, 1, 0.36, 1) 0.05s forwards;
+    }
+
+    .badge {
+      display: inline-block;
+      font-family: var(--font-mono);
+      font-size: 0.7rem;
+      font-weight: 400;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--accent);
+      border: 1px solid var(--accent-dim);
+      padding: 0.2em 0.65em;
+      border-radius: 2px;
+      margin-bottom: var(--gap-md);
+    }
+
+    .name {
+      font-size: clamp(2.4rem, 6vw, 3.8rem);
+      font-weight: 300;
+      letter-spacing: -0.03em;
+      line-height: 1.05;
+      color: var(--text);
+      margin-bottom: 0.3em;
+    }
+
+    .name strong {
+      font-weight: 500;
+    }
+
+    .tagline {
+      font-size: 1rem;
+      font-weight: 300;
+      color: var(--subtle);
+      max-width: 480px;
+      line-height: 1.7;
+      margin-top: 1rem;
+    }
+
+    .contact-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: var(--gap-sm);
+      margin-top: var(--gap-md);
+      align-items: center;
+    }
+
+    .contact-row a {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4em;
+      font-family: var(--font-mono);
+      font-size: 0.8rem;
+      color: var(--subtle);
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+
+    .contact-row a:hover {
+      color: var(--text);
+    }
+
+    .contact-row .dot {
+      color: var(--border);
+      font-size: 1.1em;
+    }
+
+    /* ── Section base ────────────────────────────────── */
+    section {
+      margin-bottom: var(--gap-xl);
+      opacity: 0;
+      transform: translateY(18px);
+    }
+
+    section.visible {
+      animation: fadeUp 0.65s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+    }
+
+    .section-label {
+      font-family: var(--font-mono);
+      font-size: 0.7rem;
+      font-weight: 400;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-bottom: var(--gap-md);
+    }
+
+    /* ── About ──────────────────────────────────────── */
+    .about-text {
+      font-size: 1.05rem;
+      font-weight: 300;
+      color: var(--text);
+      line-height: 1.8;
+      max-width: 600px;
+    }
+
+    .about-text em {
+      font-style: italic;
+      color: var(--subtle);
+    }
+
+    /* ── Skills ─────────────────────────────────────── */
+    .skills-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+      gap: var(--gap-sm);
+    }
+
+    .skill-group h4 {
+      font-family: var(--font-mono);
+      font-size: 0.72rem;
+      font-weight: 400;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 0.5em;
+    }
+
+    .skill-group ul {
+      list-style: none;
+    }
+
+    .skill-group ul li {
+      font-size: 0.88rem;
+      color: var(--subtle);
+      line-height: 1.9;
+      font-weight: 300;
+    }
+
+    /* ── Projects ───────────────────────────────────── */
+    .projects-list {
+      display: flex;
+      flex-direction: column;
+      gap: var(--gap-md);
+    }
+
+    .project-card {
+      position: relative;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 4px;
+      padding: var(--gap-md) calc(var(--gap-md) * 1.2);
+      transition: border-color 0.25s, background 0.25s;
+      overflow: hidden;
+    }
+
+    .project-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 3px;
+      height: 100%;
+      background: var(--accent);
+      opacity: 0;
+      transition: opacity 0.25s;
+    }
+
+    .project-card:hover {
+      border-color: var(--muted);
+      background: #151515;
+    }
+
+    .project-card:hover::before {
+      opacity: 1;
+    }
+
+    .project-header {
+      display: flex;
+      align-items: baseline;
+      justify-content: space-between;
+      gap: var(--gap-sm);
+      flex-wrap: wrap;
+      margin-bottom: 0.6rem;
+    }
+
+    .project-name {
+      font-size: 1.05rem;
+      font-weight: 500;
+      color: var(--text);
+      letter-spacing: -0.01em;
+    }
+
+    .project-url {
+      font-family: var(--font-mono);
+      font-size: 0.72rem;
+      color: var(--accent);
+      text-decoration: none;
+      letter-spacing: 0.02em;
+      opacity: 0.8;
+    }
+
+    .project-url:hover {
+      opacity: 1;
+    }
+
+    .project-desc {
+      font-size: 0.9rem;
+      font-weight: 300;
+      color: var(--subtle);
+      line-height: 1.7;
+      margin-bottom: var(--gap-sm);
+    }
+
+    .project-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.4rem;
+    }
+
+    .tag {
+      font-family: var(--font-mono);
+      font-size: 0.68rem;
+      color: var(--muted);
+      border: 1px solid var(--border);
+      padding: 0.15em 0.6em;
+      border-radius: 2px;
+      letter-spacing: 0.05em;
+    }
+
+    /* ── Footer ─────────────────────────────────────── */
+    footer {
+      border-top: 1px solid var(--border);
+      padding-top: var(--gap-md);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: var(--gap-sm);
+      opacity: 0;
+      animation: fadeUp 0.65s cubic-bezier(0.22, 1, 0.36, 1) 0.5s forwards;
+    }
+
+    .footer-left {
+      font-family: var(--font-mono);
+      font-size: 0.72rem;
+      color: var(--muted);
+      letter-spacing: 0.05em;
+    }
+
+    .footer-right {
+      font-family: var(--font-mono);
+      font-size: 0.72rem;
+      color: var(--muted);
+    }
+
+    /* ── Cursor dot ─────────────────────────────────── */
+    .cursor-dot {
+      position: fixed;
+      width: 6px;
+      height: 6px;
+      background: var(--accent);
+      border-radius: 50%;
+      pointer-events: none;
+      transform: translate(-50%, -50%);
+      transition: transform 0.1s, opacity 0.3s;
+      z-index: 1000;
+      opacity: 0;
+    }
+
+    /* ── Animation ──────────────────────────────────── */
+    @keyframes fadeUp {
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    /* ── Responsive ─────────────────────────────────── */
+    @media (max-width: 600px) {
+      body {
+        padding: 3rem 1.25rem;
+      }
+
+      .skills-grid {
+        grid-template-columns: 1fr 1fr;
+      }
+
+      .project-header {
+        flex-direction: column;
+        gap: 0.2rem;
+      }
+
+      footer {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+    }
+
+    /* ── Scrollbar ──────────────────────────────────── */
+    ::-webkit-scrollbar {
+      width: 6px;
+    }
+    ::-webkit-scrollbar-track {
+      background: var(--bg);
+    }
+    ::-webkit-scrollbar-thumb {
+      background: var(--border);
+      border-radius: 3px;
+    }
+    ::-webkit-scrollbar-thumb:hover {
+      background: var(--muted);
+    }
+
+    /* ── Selection ──────────────────────────────────── */
+    ::selection {
+      background: var(--accent);
+      color: var(--bg);
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Cursor -->
+  <div class="cursor-dot" id="cursor"></div>
+
+  <div class="container">
+
+    <!-- ── Header ───────────────────────────────────── -->
+    <header>
+      <div class="badge">Available for opportunities</div>
+      <h1 class="name"><strong>Junyoung</strong> Choi</h1>
+      <p class="tagline">
+        Product Engineer building tools that make complex systems feel simple.
+        Interested in the intersection of <em>developer experience</em> and <em>AI automation</em>.
+      </p>
+      <div class="contact-row">
+        <a href="https://github.com/lunatiee" target="_blank" rel="noopener">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor">
+            <path d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z"/>
+          </svg>
+          lunatiee
+        </a>
+        <span class="dot">·</span>
+        <a href="mailto:lunatie@gmail.com">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+            <path d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/>
+          </svg>
+          lunatie@gmail.com
+        </a>
+      </div>
+    </header>
+
+    <!-- ── About ─────────────────────────────────────── -->
+    <section class="about" data-delay="0">
+      <p class="section-label">// about</p>
+      <p class="about-text">
+        I design and build products end-to-end — from system architecture to the pixel-level polish.
+        Currently focused on workflow automation and AI tooling, exploring how language models
+        can act as reliable agents inside production systems.
+        <br /><br />
+        <em>I care about the experience of using software as much as what the software does.</em>
+      </p>
+    </section>
+
+    <!-- ── Skills ────────────────────────────────────── -->
+    <section class="skills" data-delay="1">
+      <p class="section-label">// stack</p>
+      <div class="skills-grid">
+        <div class="skill-group">
+          <h4>Frontend</h4>
+          <ul>
+            <li>Next.js / React</li>
+            <li>TypeScript</li>
+            <li>Tailwind CSS</li>
+            <li>React Flow</li>
+          </ul>
+        </div>
+        <div class="skill-group">
+          <h4>Backend</h4>
+          <ul>
+            <li>Node.js</li>
+            <li>PostgreSQL</li>
+            <li>Prisma</li>
+            <li>Redis / BullMQ</li>
+          </ul>
+        </div>
+        <div class="skill-group">
+          <h4>AI / Infra</h4>
+          <ul>
+            <li>OpenAI API</li>
+            <li>Anthropic Claude</li>
+            <li>LangGraph</li>
+            <li>Temporal</li>
+          </ul>
+        </div>
+        <div class="skill-group">
+          <h4>Platform</h4>
+          <ul>
+            <li>Docker</li>
+            <li>Cloud Run</li>
+            <li>GitHub Actions</li>
+            <li>WebSocket / SSE</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- ── Projects ──────────────────────────────────── -->
+    <section class="projects" data-delay="2">
+      <p class="section-label">// projects</p>
+      <div class="projects-list">
+
+        <div class="project-card">
+          <div class="project-header">
+            <span class="project-name">Workflow Builder</span>
+            <span class="project-url">workflow-builder.lunatiee.is-a.dev</span>
+          </div>
+          <p class="project-desc">
+            AI-powered workflow automation platform. Drag-and-drop visual editor with 51 built-in node types,
+            autonomous AI agent execution with agentic loop, human-in-the-loop approval flows,
+            and real-time collaborative editing via CRDT.
+          </p>
+          <div class="project-tags">
+            <span class="tag">Next.js</span>
+            <span class="tag">React Flow</span>
+            <span class="tag">LangGraph</span>
+            <span class="tag">Temporal</span>
+            <span class="tag">PostgreSQL</span>
+            <span class="tag">BullMQ</span>
+            <span class="tag">Yjs</span>
+          </div>
+        </div>
+
+        <!-- Future project cards go here -->
+
+      </div>
+    </section>
+
+    <!-- ── Footer ────────────────────────────────────── -->
+    <footer>
+      <span class="footer-left">© 2026 Junyoung Choi</span>
+      <span class="footer-right">lunatiee.github.io</span>
+    </footer>
+
+  </div>
+
+  <script>
+    // ── Cursor dot ───────────────────────────────────
+    const cursor = document.getElementById('cursor');
+    let mouseX = 0, mouseY = 0;
+    let cursorVisible = false;
+
+    document.addEventListener('mousemove', (e) => {
+      mouseX = e.clientX;
+      mouseY = e.clientY;
+      if (!cursorVisible) {
+        cursor.style.opacity = '1';
+        cursorVisible = true;
+      }
+      cursor.style.left = mouseX + 'px';
+      cursor.style.top  = mouseY + 'px';
+    });
+
+    document.addEventListener('mouseleave', () => {
+      cursor.style.opacity = '0';
+      cursorVisible = false;
+    });
+
+    // ── Scroll-triggered fade-up ─────────────────────
+    const sections = document.querySelectorAll('section[data-delay]');
+
+    const delays = [0.05, 0.15, 0.25];
+
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          const idx = parseInt(entry.target.dataset.delay, 10);
+          entry.target.style.animationDelay = delays[idx] + 's';
+          entry.target.classList.add('visible');
+          observer.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.1 });
+
+    sections.forEach((s) => observer.observe(s));
+  </script>
+
+</body>
+</html>
