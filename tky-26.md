@@ -29,7 +29,7 @@
 ---
 
 <a id="벚꽃"></a>
-<details>
+<details markdown="1">
 <summary><h2>🌸 벚꽃 스팟</h2></summary>
 
 {{ 3월 26~30일이면 보통 만개~절정 시기인데, 올해 개화가 빠른지 늦는지 출발 전에 tenki.jp/sakura 에서 한번 체크해보세요. 만개 전이라도 5~7부 개화면 충분히 예쁘고, 오히려 만개 직후 하나후부키(꽃잎 비)가 더 감동적일 수 있어요 }}
@@ -48,7 +48,7 @@
 ---
 
 <a id="문구"></a>
-<details>
+<details markdown="1">
 <summary><h2>🖊️ 문구점</h2></summary>
 
 | 장소 | 위치 | 메모 |
@@ -68,7 +68,7 @@
 ---
 
 <a id="편집샵"></a>
-<details>
+<details markdown="1">
 <summary><h2>🛍️ 편집샵 & 셀렉트숍</h2></summary>
 
 ### <a id="패션"></a>👗 패션 / 디자이너
@@ -132,7 +132,7 @@
 ---
 
 <a id="맛집"></a>
-<details>
+<details markdown="1">
 <summary><h2>🍜 맛집 & 카페</h2></summary>
 
 ### <a id="라멘"></a>라멘 / 면류
@@ -217,7 +217,7 @@
 ---
 
 <a id="관광"></a>
-<details>
+<details markdown="1">
 <summary><h2>🎨 관광 / 체험 / 갤러리</h2></summary>
 
 | 장소 | 위치 | 메모 |
@@ -248,7 +248,7 @@
 ---
 
 <a id="전망대"></a>
-<details>
+<details markdown="1">
 <summary><h2>🏙️ 전망대</h2></summary>
 
 | 장소 | 높이 | 요금 | 메모 |
@@ -266,7 +266,7 @@
 ---
 
 <a id="동네별"></a>
-<details>
+<details markdown="1">
 <summary><h2>📍 동네별 묶어보기</h2></summary>
 
 같은 동네끼리 묶어서 돌면 효율적!
@@ -303,7 +303,7 @@
 ---
 
 <a id="일정세트"></a>
-<details>
+<details markdown="1">
 <summary><h2>🗓️ 일정 세트</h2></summary>
 
 > 💡 두 가지 세트를 준비했어요. 기본 뼈대(Day 1·5)는 동일하고 중간 3일(Day 2·3·4) 배치가 달라요. 그날 기분/날씨에 따라 섞어서 써도 OK!
@@ -614,7 +614,7 @@
 ---
 
 <a id="day1"></a>
-<details>
+<details markdown="1">
 <summary><h2>Day 1 — 3/26 (목) 도착일</h2></summary>
 
 > 공통: ~16:00 나리타 도착 → 게이세이 액세스 특급 → 다이몬역 (~17:30) → 숙소 체크인
@@ -664,7 +664,7 @@
 ---
 
 <a id="day2"></a>
-<details>
+<details markdown="1">
 <summary><h2>Day 2 — 3/27 (금)</h2></summary>
 
 ### A. 문구·편집샵 — 나카메구로/다이칸야마 → 시부야
@@ -738,7 +738,7 @@
 ---
 
 <a id="day3"></a>
-<details>
+<details markdown="1">
 <summary><h2>Day 3 — 3/28 (토)</h2></summary>
 
 ### A. 문구·편집샵 — 아사쿠사/쿠라마에/갓파바시 → 긴자
@@ -815,7 +815,7 @@
 ---
 
 <a id="day4"></a>
-<details>
+<details markdown="1">
 <summary><h2>Day 4 — 3/29 (일)</h2></summary>
 
 ### A. 문구·편집샵 — 치도리가후치 벚꽃 → 오모테산도/하라주쿠 → 신주쿠
@@ -892,7 +892,7 @@
 ---
 
 <a id="day5"></a>
-<details>
+<details markdown="1">
 <summary><h2>Day 5 — 3/30 (월) 출발일</h2></summary>
 
 > 공통: 체크아웃 후 게이세이 액세스 특급 → 나리타 공항. 오전만 활용!
@@ -952,7 +952,7 @@
 ---
 
 <a id="fg-지역별"></a>
-<details>
+<details markdown="1">
 <summary><h2>📍 지역별 맛집 모아보기</h2></summary>
 
 > 가게 이름을 누르면 음식유형별 파트의 상세 설명으로 이동합니다.
@@ -1070,7 +1070,7 @@
 
 ---
 
-<details>
+<details markdown="1">
 <summary><h2>🍜 음식유형별 맛집 가이드</h2></summary>
 
 > 각 가게의 상세 설명입니다. 지역별 파트에서 링크를 타고 오셨다면 여기서 확인!
